@@ -21,41 +21,6 @@ Fully modular RTL design
 
 Hardware validation on ZedBoard
 
-🏗 System Architecture
-
-The design follows a modular RTL approach:
-
-                +------------------+
-Clock --------->|  Clock Divider   |
-                +------------------+
-                           |
-                           v
-                +------------------+
-Button -------> |   Debounce       |
-                +------------------+
-                           |
-                           v
-                +------------------+
-                |   FSM Control    |
-                +------------------+
-                           |
-                           v
-                +------------------+
-                |  Up/Down Counter |
-                +------------------+
-                           |
-                           v
-                +------------------+
-                | 7-Segment Driver |
-                +------------------+
-
-📂 Project Structure
-fpga_up_down_counter/
-│
-├── rtl/          # Synthesizable Verilog RTL
-├── tb/           # Testbench files
-└── README.md
-
 🧠 Design Details
 1️⃣ Up/Down Counter
 
