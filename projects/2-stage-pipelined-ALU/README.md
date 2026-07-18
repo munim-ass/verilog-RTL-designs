@@ -9,20 +9,19 @@ A 32-bit, 2-stage pipelined ALU designed in Verilog, verified using a hybrid har
 
 ---
 
-## System Architecture
-[ Python Generator ] ──► (stimulus.txt) ──► [ SystemVerilog TB ]
-│ (Cycle-by-Cycle Call)
-▼
-[ Python Parser ] ◄── (simulate.log) ◄── [ Verilog RTL <=> C++ Model (DPI-C) ]
+## Verification Pipeline
 
-1. **`sim/generate_stimulus.py`**: Exports targeted mathematical distributions and extreme boundary conditions into raw hex blocks.
-2. **`tb/tb_pipelined_alu.sv`**: Ingests test vectors on clock edges, driving the RTL pipeline while streaming concurrent inputs directly into the C++ engine.
-3. **`tb/c_alu_reference.cpp`**: Computes the golden structural reference instantaneously.
-4. **`sim/parse_results.py`**: Sanitizes the simulator console stream, performing cycle-to-cycle bitfield assertions and identifying pipeline logic bugs.
+| Phase | Component | Responsibility | Interface Layer |
+| :--- | :--- | :--- | :--- |
+| **1. Stimulus Generation** | `sim/generate_stimulus.py` | Exports targeted mathematical distributions and boundary conditions into raw hex blocks. | File I/O (`stimulus.txt`) |
+| **2. Pipeline Driving** | `tb/tb_pipelined_alu.sv` | Ingests test vectors on clock edges, driving the RTL pipeline while tracking the 2-cycle latency offset. | Native SystemVerilog |
+| **3. Golden Reference** | `tb/c_alu_reference.cpp` | Computes the golden structural reference value instantaneously in memory. | SystemVerilog DPI-C |
+| **4. Log Analytics** | `sim/parse_results.py` | Sanitizes the simulator console stream, performing cycle-to-cycle bitfield assertions and identifying logic bugs. | Regex Log Analysis |
 
 ---
 
 ## Directory Structure
+
 ```text
 ├── rtl/
 │   └── twostage_pipelined_ALU.v   # RTL Design
@@ -33,9 +32,9 @@ A 32-bit, 2-stage pipelined ALU designed in Verilog, verified using a hybrid har
 │   ├── generate_stimulus.py       # Test vector generator
 │   └── parse_results.py           # Verification log parser
 └── .gitignore                     # Excludes temporary Vivado compiler junk 
-
-
-Example Verification Output
+```
+## Example Verification Output
+```
 ==================================================
         ALU PIPELINE POST-SIMULATION REPORT       
 ==================================================
