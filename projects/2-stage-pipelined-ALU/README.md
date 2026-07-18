@@ -23,7 +23,7 @@ A 32-bit, 2-stage pipelined ALU designed in Verilog, verified using a hybrid har
 ---
 
 ## Directory Structure
-
+```text
 ├── rtl/
 │   └── twostage_pipelined_ALU.v   # RTL Design
 ├── tb/
