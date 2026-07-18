@@ -1,0 +1,11 @@
+*.sim/
+*.runs/
+*.hw/
+*.ip_user_files/
+.Xil/
+xsim.dir/
+*.jou
+*.log
+*.pb
+*.str
+*.txt
