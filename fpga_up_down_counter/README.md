@@ -100,20 +100,4 @@ FPGA synthesis and implementation flow
 
 Hardware debugging
 
-🔮 Future Improvements
 
-Parameterized counter width
-
-Add load functionality
-
-Integrate UART for serial monitoring
-
-Convert to pipelined architecture
-
-Add formal verification
-
-👤 Author
-
-Munim Ahmed
-Electronics & Communication Engineering
-Focused on VLSI, RTL Design, and FPGA Development
